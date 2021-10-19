@@ -1,0 +1,41 @@
+<%- include("./includes/header")%>
+
+<h1>Node Shop</h1>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <% if(products.length !== 0) {%> <% products.forEach(product => {%>
+    <div class="col">
+      <div class="card h-100">
+        <div class="img-parent d-flex justify-content-center p-4">
+          <img
+            src="<%= product.image%>"
+            class="card-img-top img-fluid rounded"
+            alt="..."
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= product.title.length > 60 ? `${product.title.slice(0,60)}...` :
+            product.title%>
+          </h5>
+          <p class="card-text">
+            <%= product.description.length > 100 ?
+            `${product.description.slice(0,100)}...` : product.description%>
+          </p>
+          <div class="d-grid gap-2 d-md-block mx-auto">
+            <a href="/product/:<%product.id %>" class="btn btn-primary"
+              >Details</a
+            >
+            <a href="/cart" class="btn btn-primary">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% });%> <%} else {%>
+    <h2>No products</h2>
+    <% } %>
+  </div>
+</div>
+
+<%- include("./includes/footer")%>
